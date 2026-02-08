@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World Map - Continents Info</title>
+
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: center;
+            background:linear-gradient(to right, #1551BC,#aac2ea);
+            color:white;
+        }
+
+        .info {
+            display: none;
+            margin: 20px auto;
+            width: 70%;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .info:target {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<br>
+<h2>&#127757 World Map - Click a Continent to know the basic details</h2><br><br>
+
+<img src="world map 2.jpg"
+     alt="World Map"
+     usemap="#worldmap"
+     width="900">
+
+<map name="worldmap">
+  <area shape="rect" coords="0,40,300,230" href="#northamerica" alt="North America">
+  <area shape="rect" coords="200,220,360,459" href="#southamerica"alt="South America">
+  <area shape="rect" coords="360,40,550,150" href="#europe" alt="Europe">
+  <area shape="rect" coords="360,150,520,380" href="#africa" alt="Africa">
+  <area shape="rect" coords="650,250,860,420" href="#australia" alt="Australia">
+  <area shape="rect" coords="551,20,900,300" href="#asia" alt="Asia">
+  <area shape="rect" coords="0,400,900,459" href="#antarctica" alt="Antarctica">
+</map>
+
+<div id="asia" class="info">
+    <h3>Asia</h3>
+    <p><b>Population:</b> ~4.7 Billion</p>
+    <p><b>Major Cities:</b> Tokyo, Delhi, Shanghai</p>
+</div>
+
+<div id="africa" class="info">
+    <h3>Africa</h3>
+    <p><b>Population:</b> ~1.4 Billion</p>
+    <p><b>Major Cities:</b> Lagos, Cairo, Nairobi</p>
+</div>
+
+<div id="northamerica" class="info">
+    <h3>North America</h3>
+    <p><b>Population:</b> ~600 Million</p>
+    <p><b>Major Cities:</b> New York, Toronto, Mexico City</p>
+</div>
+
+<div id="southamerica" class="info">
+    <h3>South America</h3>
+    <p><b>Population:</b> ~430 Million</p>
+    <p><b>Major Cities:</b> São Paulo, Buenos Aires, Lima</p>
+</div>
+
+<div id="europe" class="info">
+    <h3>Europe</h3>
+    <p><b>Population:</b> ~750 Million</p>
+    <p><b>Major Cities:</b> London, Paris, Berlin</p>
+</div>
+
+<div id="australia" class="info">
+    <h3>Australia</h3>
+    <p><b>Population:</b> ~43 Million</p>
+    <p><b>Major Cities:</b> Sydney, Melbourne, Brisbane</p>
+</div>
+
+<div id="antarctica" class="info">
+    <h3>Antarctica</h3>
+    <p><b>Population:</b> ~1,000 (Researchers)</p>
+    <p><b>Major Cities:</b> None</p>
+</div>
+
+</body>
+</html>
