@@ -1,0 +1,267 @@
+
+body {
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: #f2f2f2;
+}
+.header {
+    background: #281403;
+    color: white;
+    padding: 15px;
+    display:flex;
+}
+.foot {
+   
+    top:150vh;
+    left:0vw;
+    width:100%;
+    background:#281403;
+    color: white;
+    padding: 15px;
+    text-align: center;  
+}
+.container {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+}
+.sidebar {
+    background: #311904 !important;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height:125vh;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background:#512906 !important;
+}
+
+/* Content Area */
+.content {
+    padding: 20px;
+    position:relative;
+}
+
+/* Card-based Articles */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin: 0;
+}
+
+/* Hover Reveal Excerpt */
+.excerpt {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    transition: bottom 0.3s;
+}
+
+.card:hover .excerpt {
+    bottom: 0;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.page {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background: #dcdde1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.page:hover {
+    background: #693508 !important;
+    color: white;
+}
+
+.page.active {
+    background: #2c1704 !important;
+    color: white;
+}
+
+/* Responsive: Sidebar → Top Nav */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .sidebar a {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+}
+}
+.foot {
+    position:absolute;
+    top:140vh;
+    left:0vw;
+    width:100%;
+    background: #1e272e;
+    color: white;
+    padding: 15px;
+    text-align: center;  
+}
+
+/* Grid Layout */
+.container {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #2f3640;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height:120vh;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background: #40739e;
+}
+
+/* Content Area */
+.content {
+    padding: 20px;
+    position:relative;
+}
+
+/* Card-based Articles */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin: 0;
+}
+
+/* Hover Reveal Excerpt */
+.excerpt {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    transition: bottom 0.3s;
+}
+
+.card:hover .excerpt {
+    bottom: 0;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.page {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background: #dcdde1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.page:hover {
+    background: #40739e;
+    color: white;
+}
+
+.page.active {
+    background: #273c75;
+    color: white;
+}
+
+/* Responsive: Sidebar → Top Nav */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .sidebar a {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+}
