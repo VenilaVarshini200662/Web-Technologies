@@ -51,7 +51,6 @@ body {
     position:relative;
 }
 
-/* Card-based Articles */
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -77,7 +76,6 @@ body {
     margin: 0;
 }
 
-/* Hover Reveal Excerpt */
 .excerpt {
     position: absolute;
     bottom: -100%;
@@ -94,7 +92,6 @@ body {
     bottom: 0;
 }
 
-/* Pagination */
 .pagination {
     margin-top: 30px;
     text-align: center;
@@ -119,7 +116,6 @@ body {
     color: white;
 }
 
-/* Responsive: Sidebar → Top Nav */
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
@@ -147,14 +143,12 @@ body {
     text-align: center;  
 }
 
-/* Grid Layout */
 .container {
     display: grid;
     grid-template-columns: 220px 1fr;
     min-height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
     background: #2f3640;
     padding: 20px;
@@ -175,13 +169,11 @@ body {
     background: #40739e;
 }
 
-/* Content Area */
 .content {
     padding: 20px;
     position:relative;
 }
 
-/* Card-based Articles */
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -207,7 +199,6 @@ body {
     margin: 0;
 }
 
-/* Hover Reveal Excerpt */
 .excerpt {
     position: absolute;
     bottom: -100%;
@@ -224,7 +215,6 @@ body {
     bottom: 0;
 }
 
-/* Pagination */
 .pagination {
     margin-top: 30px;
     text-align: center;
@@ -249,7 +239,6 @@ body {
     color: white;
 }
 
-/* Responsive: Sidebar → Top Nav */
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
@@ -264,4 +253,5 @@ body {
         margin-bottom: 0;
         font-size: 14px;
     }
+
 }
