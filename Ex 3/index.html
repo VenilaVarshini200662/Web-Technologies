@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DHTML Checkout</title>
+
+<style>
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 40px;
+}
+
+.container {
+    max-width: 620px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #4b3ca7;
+}
+
+h3 {
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.step { display: none; }
+.step.active { display: block; }
+
+input, select {
+    width: 100%;
+    padding: 11px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+}
+
+input:focus, select:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+button {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.next {
+    background: linear-gradient(to right, #36d1dc, #5b86e5);
+    color: white;
+}
+
+.back {
+    background: linear-gradient(to right, #bdc3c7, #2c3e50);
+    color: white;
+}
+
+.submit {
+    background: linear-gradient(to right, #56ab2f, #a8e063);
+    color: white;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+}
+
+.progress {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+#progressBar {
+    height: 10px;
+    width: 0%;
+    background: linear-gradient(to right, #ff512f, #dd2476);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.summary {
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    border-left: 6px solid #667eea;
+    padding: 16px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>🛒 Secure Checkout</h2>
+
+<div class="progress">
+    <div id="progressBar"></div>
+</div>
+
+<div class="summary">
+    <strong>Order Summary</strong>
+    <p id="summaryText">Validated details will appear here.</p>
+</div>
+
+<form onsubmit="return false">
+
+<div class="step active">
+    <h3>🚚 Shipping Information</h3>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="phone" placeholder="Phone Number">
+
+    <select id="country">
+        <option value="">Select Country</option>
+        <option value="IN">India</option>
+        <option value="US">United States</option>
+    </select>
+
+    <input type="text" id="postal" placeholder="Postal Code">
+
+    <div class="button-group">
+        <span></span>
+        <button class="next" onclick="nextStep()">Next ➜</button>
+    </div>
+</div>
+
+<div class="step">
+    <h3>🏠 Billing Details</h3>
+    <input type="text" id="address" placeholder="Billing Address">
+
+    <div class="button-group">
+        <button class="back" onclick="prevStep()">← Back</button>
+        <button class="next" onclick="nextStep()">Next ➜</button>
+    </div>
+</div>
+
+<div class="step">
+    <h3>💳 Payment Method</h3>
+
+    <input type="text" id="card" placeholder="Credit Card Number">
+    <input type="month" id="expiry">
+
+    <div class="button-group">
+        <button class="back" onclick="prevStep()">← Back</button>
+        <button class="submit" onclick="submitForm()">Place Order ✔</button>
+    </div>
+</div>
+
+</form>
+</div>
+
+<script>
+let currentStep = 0;
+let steps = document.getElementsByClassName("step");
+
+showStep(currentStep);
+
+function showStep(step) {
+    for (let s of steps) s.classList.remove("active");
+    steps[step].classList.add("active");
+
+    let progress = (step / steps.length) * 100;
+    document.getElementById("progressBar").style.width = progress + "%";
+}
+
+function nextStep() {
+    if (validateCurrentStep()) {
+        currentStep++;
+        showStep(currentStep);
+        updateSummary();
+    }
+}
+
+function prevStep() {
+    currentStep--;
+    showStep(currentStep);
+}
+
+function validateCurrentStep() {
+    if (currentStep === 0) return validateShipping();
+    if (currentStep === 1) return validateBilling();
+    if (currentStep === 2) return validatePayment();
+}
+
+function validateShipping() {
+    let phone = phoneEl.value.trim();
+    let country = countryEl.value;
+    let postal = postalEl.value.trim();
+
+    if (!country) return alert("Please select a country."), false;
+    if (!validatePhone(phone, country)) return alert("Invalid phone number."), false;
+    if (!validatePostal(postal, country)) return alert("Invalid postal code."), false;
+
+    return true;
+}
+
+
+function validateBilling() {
+    return addressEl.value.trim().length >= 5;
+}
+
+function validatePayment() {
+    if (!luhn(cardEl.value)) return alert("Invalid credit card number."), false;
+    if (new Date(expiryEl.value) <= new Date())
+        return alert("Invalid expiry date."), false;
+    return true;
+}
+
+function validatePhone(phone, country) {
+    phone = phone.replace(/[^0-9]/g, "");
+    if (country === "IN") return /^[6-9][0-9]{9}$/.test(phone);
+    if (country === "US") return phone.length === 10;
+    return false;
+}
+
+
+function validatePostal(code, country) {
+    code = code.replace(/[^0-9]/g, "");
+    if (country === "IN") return code.length === 6;
+    if (country === "US") return code.length === 5;
+    return false;
+}
+
+function luhn(num) {
+    num = num.replace(/[^0-9]/g, "");
+    let sum = 0, alt = false;
+    for (let i = num.length - 1; i >= 0; i--) {
+        let n = parseInt(num[i]);
+        if (alt) {
+            n *= 2;
+            if (n > 9) n -= 9;
+        }
+        sum += n;
+        alt = !alt;
+    }
+    return sum % 10 === 0;
+}
+
+function updateSummary() {
+    summaryText.innerHTML =
+        "Name: " + nameEl.value + "<br>" +
+        "Phone: " + phoneEl.value + "<br>" +
+        "Country: " + countryEl.value;
+}
+
+function submitForm() {
+    if (validatePayment()) {
+        document.getElementById("progressBar").style.width = "100%";
+        alert("🎉 Order placed successfully!");
+    }
+}
+
+const nameEl = document.getElementById("name");
+const phoneEl = document.getElementById("phone");
+const countryEl = document.getElementById("country");
+const postalEl = document.getElementById("postal");
+const addressEl = document.getElementById("address");
+const cardEl = document.getElementById("card");
+const expiryEl = document.getElementById("expiry");
+const summaryText = document.getElementById("summaryText");
+</script>
+
+</body>
+</html>
